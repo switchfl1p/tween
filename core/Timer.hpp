@@ -43,11 +43,11 @@ class Timer{
         //returns the time in seconds since the timer started, excluding time spent paused
         float getTimeSinceStart() const;
 
-        //returns the timer's duration including pauses
+        //returns the timer's duration that was passed in
         float getDuration() const {return sec_duration;}
     
     private:
-        Type type;
+        Type etype;
         float sec_duration;
 
         bool has_updated;
