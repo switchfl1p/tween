@@ -98,3 +98,7 @@ float Timer::getProgression() const{
 float Timer::getTimeSinceStart() const{
     return sec_accum_time;
 }
+
+float Timer::getDuration() const{
+    return sec_duration;
+}
