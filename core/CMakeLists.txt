@@ -1,11 +1,10 @@
 set(CORE_SOURCES
     Timer.cpp
-    Interpolator.cpp
 )
 
 set(CORE_HEADERS
     Timer.hpp
-    Interpolator.hpp
+    Interpolators.hpp
 )
 
 add_library(core STATIC ${CORE_SOURCES} ${CORE_HEADERS})

@@ -1,3 +1,5 @@
+/* switchfl1p 2025-2026 */
+
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
 #include <Timer.hpp>
