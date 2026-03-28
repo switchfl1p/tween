@@ -28,4 +28,7 @@ float getTime(const std::pair<float, float> &max_intensity_data) {
 
 int main() {
     std::cout << "Hello World!\n";
+
+    Timer test_timer(Timer::TT_LOOP, 30.0f);
+    std::vector<glm::vec4> values;
 }
