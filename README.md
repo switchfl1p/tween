@@ -8,7 +8,7 @@ This is a fork of part of the framework used in [gltut by Jason L. McKesson](htt
 ### Timer
 
 Provides 3 types of timers (single, loop and infinite) and a set of functions to operate them such as pause, fast forward and rewind.\
-Most importantly it provides a getAlpha() method which returns a [0, 1] value representing progress through the timer's duration, for use with the interpolators.
+Most importantly it provides a getAlpha() function which returns a [0, 1] value representing progress through the timer's duration, for use with the interpolators.
 
 ### Interpolators
 
