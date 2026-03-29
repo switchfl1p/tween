@@ -1,9 +1,7 @@
 /* switchfl1p 2025-2026 */
 
-#include <iostream>
 #include <Timer.hpp>
 #include <Interpolators.hpp>
-
 #include <glm/glm.hpp>
 
 float distance(const glm::vec3 &lhs, const glm::vec3 &rhs) {
@@ -27,8 +25,15 @@ float getTime(const std::pair<float, float> &max_intensity_data) {
 }
 
 int main() {
-    std::cout << "Hello World!\n";
+    ConstVelLinearInterpolator<glm::vec3> position_interpolator;
+    Timer position_timer(Timer::TT_LOOP, 10.0f);
+    std::vector<glm::vec3> position_values;
 
-    Timer test_timer(Timer::TT_LOOP, 30.0f);
-    std::vector<glm::vec4> values;
+    position_values.push_back(glm::vec3(-5.0f, 1.5f, 8.0f));
+	position_values.push_back(glm::vec3(-2.0f, 3.0f, 5.0f));   
+    position_interpolator.setValues(position_values);
+
+    //during your display loop
+    position_timer.update();
+    glm::vec4 interpolated_position = glm::vec4(position_interpolator.interpolate(position_timer.getAlpha()), 1.0f);
 }
