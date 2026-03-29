@@ -1,9 +1,12 @@
 /* switchfl1p 2025-2026 */
 
-#include <Timer.hpp>
-#include <Interpolators.hpp>
 #include <glm/glm.hpp>
+#include <Timer.hpp>
 
+// getValue, getTime, and distance must be defined before including Interpolators.hpp
+// so the template can find them at instantiation time
+
+//TODO look into traits class or policy template to fix this messy order
 float distance(const glm::vec3 &lhs, const glm::vec3 &rhs) {
     return glm::length(rhs - lhs);
 }
@@ -23,6 +26,8 @@ float getValue(const std::pair<float, float> &max_intensity_data) {
 float getTime(const std::pair<float, float> &max_intensity_data) {
     return max_intensity_data.second;
 }
+
+#include <Interpolators.hpp>
 
 int main() {
     ConstVelLinearInterpolator<glm::vec3> position_interpolator;
