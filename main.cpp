@@ -2,11 +2,8 @@
 
 #include <glm/glm.hpp>
 #include <Timer.hpp>
+#include <Interpolators.hpp>
 
-// getValue, getTime, and distance must be defined before including Interpolators.hpp
-// so the template can find them at instantiation time
-
-//TODO look into traits class or policy template to fix this messy order
 float distance(const glm::vec3 &lhs, const glm::vec3 &rhs) {
     return glm::length(rhs - lhs);
 }
@@ -27,8 +24,6 @@ float getTime(const std::pair<float, float> &max_intensity_data) {
     return max_intensity_data.second;
 }
 
-#include <Interpolators.hpp>
-
 int main() {
     ConstVelLinearInterpolator<glm::vec3> position_interpolator;
     Timer position_timer(Timer::TT_LOOP, 10.0f);
@@ -38,7 +33,19 @@ int main() {
 	position_values.push_back(glm::vec3(-2.0f, 3.0f, 5.0f));   
     position_interpolator.setValues(position_values);
 
+    TimedLinearInterpolator<glm::vec4> color_interpolator;
+    Timer color_timer(Timer::TT_SINGLE, 15.0f);
+    std::vector<std::pair<glm::vec4, float>> color_time_pairs;
+
+    color_time_pairs.push_back(std::pair<glm::vec4, float>(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f), 1.0f));
+    color_time_pairs.push_back(std::pair<glm::vec4, float>(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f));
+
+    color_interpolator.setValues(color_time_pairs);
+
     //during your display loop
     position_timer.update();
     glm::vec4 interpolated_position = glm::vec4(position_interpolator.interpolate(position_timer.getAlpha()), 1.0f);
+
+    color_timer.update();
+    glm::vec4 interpolated_color = color_interpolator.interpolate(color_timer.getAlpha());
 }
