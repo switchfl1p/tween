@@ -3,6 +3,10 @@ a C++ library for time-based interpolation between keyframes.
 
 This is a fork of part of the framework used in [gltut by Jason L. McKesson](https://github.com/paroj/gltut)
 
+## Changelog:
+- switched from free functions to traits in Interpolators.hpp
+- switched from freeglut to glfw in Timers.cpp
+
 ## How it works
 
 ### Timer
@@ -27,24 +31,27 @@ If looping, the last value is duplicated at the end to pad the cycle boundary.
 #### Constant Velocity Linear Interpolator:
 
 Interpolates with a constant velocity between positions.\
-This interpolator maps a range of [0, 1) onto a set of values. However, it takes the distance between these values. There must be a free function called "distance" which takes two ValueType's and returns a float distance between them.\
+This interpolator maps a range of [0, 1) onto a set of values. However, it takes the distance between these values.\
 The idea is that, if you add 0.1 to your alpha value, you will always get a movement of the same distance.\
 Not necessarily between the initial and final points, but the object will have moved at the same speed along the path.\
 
 ## Usage
 
-To use **TimedLinearInterpolator** with your type T, you must provide:
+To use TimedLinearInterpolator<ValueType>, the element type T of your input range must have a specialization:
 ```C++
-YourValueType getValue(const T &data);
-float getTime(const T &data);
+template<>
+struct InterpolatorTraits<T> {
+    static ValueType getValue(const T &data);
+    static float getTime(const T &data);
+};
 ```
-To use **ConstVelLinearInterpolator** with your type T, you must provide:
+To use ConstVelLinearInterpolator<ValueType>, ValueType must have a specialization:
 ```C++
-float distance(const YourValueType &a, const YourValueType &b);
+template<>
+struct InterpolatorTraits<ValueType> {
+    static float distance(const ValueType &a, const ValueType &b);
+};
 ```
+LinearInterpolator<ValueType> requires no specialization
 
 See main.cpp for example usage
-
-## Changelog:
-- switched from freeglut to glfw
-- removed the forward declaration of functions needed by instantiations
