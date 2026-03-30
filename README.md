@@ -7,28 +7,26 @@ This is a fork of part of the framework used in [gltut by Jason L. McKesson](htt
 - switched from free functions to traits in Interpolators.hpp
 - switched from freeglut to glfw in Timers.cpp
 
-## How it works
-
-### Timer
+## Timer
 
 Provides 3 types of timers (single, loop and infinite) and a set of functions to operate them such as pause, fast forward and rewind.\
 Most importantly it provides a getAlpha() function which returns a [0, 1] value representing progress through the timer's duration, for use with the interpolators.
 
-### Interpolators
+## Interpolators
 
-#### Timed Linear Interpolator:
+### Timed Linear Interpolator:
 
 Loads a set of (value, time) pairs into the interpolator.\
 Times must be in [0, 1] and in ascending order.\
 If looping, the first value is appended at the end to allow smooth wraparound. 
 
-#### Linear Interpolator:
+### Linear Interpolator:
 
 Loads a set of values and automatically distributes them evenly across [0, 1].\
 Unlike TimedLinearInterpolator, no timestamps are required in the input.\
 If looping, the last value is duplicated at the end to pad the cycle boundary.
 
-#### Constant Velocity Linear Interpolator:
+### Constant Velocity Linear Interpolator:
 
 Interpolates with a constant velocity between positions.\
 This interpolator maps a range of [0, 1) onto a set of values. However, it takes the distance between these values.\
@@ -54,4 +52,4 @@ struct InterpolatorTraits<ValueType> {
 ```
 LinearInterpolator<ValueType> requires no specialization
 
-See main.cpp for example usage
+See [main.cpp](main.cpp) for example usage
