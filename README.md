@@ -52,4 +52,4 @@ struct InterpolatorTraits<ValueType> {
 ```
 LinearInterpolator<ValueType> requires no specialization
 
-See [main.cpp](main.cpp) for example usage
+See [InterpolatorTraits.hpp](core/InterpolatorTraits.hpp) and [main.cpp](main.cpp) for example usage
