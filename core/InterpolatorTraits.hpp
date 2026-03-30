@@ -1,3 +1,5 @@
+#pragma once
+
 #include <Interpolators.hpp>
 #include <glm/glm.hpp>
 
