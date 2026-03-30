@@ -9,7 +9,7 @@ int main() {
     /*
     Initalization example of a constant velocity linear interpolator for positions, aka glm:vec3 
     With a 10 sec duration looping timer
-    Needs distance() defined as above
+    Needs distance() defined in InterpolatorTraits.hpp
     */
     ConstVelLinearInterpolator<glm::vec3> position_interpolator;
     Timer position_timer(Timer::TT_LOOP, 10.0f);
@@ -22,7 +22,7 @@ int main() {
     /*
     Initalization example of a timed linear interpolator for colours, aka a glm::vec4
     With a 15 sec duration single timer
-    Needs getValue() and getTime defined as above
+    Needs getValue() and getTime defined in InterpolatorTraits.hpp
     Timed linear interpolators require both a value and a time
     */
     TimedLinearInterpolator<glm::vec4> color_interpolator;
@@ -36,7 +36,7 @@ int main() {
     /*
     Initalization example of a timed linear interpolator for maximum intensities, aka a float
     With a 20 sec duration looping timer
-    Needs getValue() and getTime defined as above
+    Needs getValue() and getTime defined in InterpolatorTraits.hpp
     Timed linear interpolators require both a value and a time
     */
     TimedLinearInterpolator<float> max_intensity_interpolator;
