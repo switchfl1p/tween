@@ -31,7 +31,7 @@ If looping, the last value is duplicated at the end to pad the cycle boundary.
 Interpolates with a constant velocity between positions.\
 This interpolator maps a range of [0, 1) onto a set of values. However, it takes the distance between these values.\
 The idea is that, if you add 0.1 to your alpha value, you will always get a movement of the same distance.\
-Not necessarily between the initial and final points, but the object will have moved at the same speed along the path.\
+Not necessarily between the initial and final points, but the object will have moved at the same speed along the path.
 
 ## Usage
 
